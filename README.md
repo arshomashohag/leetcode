@@ -8,10 +8,24 @@ A collection of LeetCode problems and solutions in various programming languages
 leetcode/
 ├── problems/
 │   ├── easy/
+│   │   └── [problem-number]-[problem-name]/
+│   │       ├── README.md          # Problem description & notes
+│   │       ├── solution.py        # Python3 solution
+│   │       ├── solution.cpp       # C++ solution (optional)
+│   │       ├── solution.go        # Go solution (optional)
+│   │       └── notes.md           # Additional notes (optional)
 │   ├── medium/
+│   │   └── [problem-number]-[problem-name]/
 │   └── hard/
-└── README.md
+│       └── [problem-number]-[problem-name]/
+├── README.md
+├── GUIDELINES.md
+└── .gitignore
 ```
+
+### Folder Naming Convention:
+- Format: `[problem-number]-[problem-name-kebab-case]/`
+- Example: `2654-minimum-operations-to-make-array-elements-equal-to-1/`
 
 ## 🎯 Collaboration Guidelines
 
@@ -31,14 +45,12 @@ leetcode/
 
 ## 📝 Problem Format
 
-Each problem should include:
-- Problem number and title
-- Difficulty level
-- Problem description
-- Approach/Algorithm explanation
-- Pseudocode
-- Time & Space Complexity
-- Your solution implementation
+Each problem folder contains:
+- **README.md** - Problem description, examples, constraints, approach, and complexity analysis
+- **solution.py** - Python3 implementation (primary)
+- **solution.cpp** - C++ implementation (optional)
+- **solution.go** - Go implementation (optional)
+- **notes.md** - Personal notes, learnings, edge cases (optional)
 
 ## 🚀 Getting Started
 

@@ -1,5 +1,17 @@
 # AI Assistant Guidelines for LeetCode Problem Solving
 
+## 📁 Repository Structure
+
+Each problem gets its own folder following this convention:
+- **Folder name:** `[problem-number]-[problem-name-in-kebab-case]/`
+- **Location:** `problems/[difficulty]/[folder-name]/`
+- **Files:**
+  - `README.md` - Problem description, approach, complexity
+  - `solution.py` - Python3 solution (default)
+  - `solution.cpp` - C++ solution (optional)
+  - `solution.go` - Go solution (optional)
+  - `notes.md` - Personal insights (optional)
+
 ## 🤖 Assistant Behavior Rules
 
 ### ✅ DO:
