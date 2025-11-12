@@ -45,20 +45,58 @@ Explanation: It can be shown that it is impossible to make all the elements equa
 
 ## Approach & Algorithm
 
-*To be filled with your understanding and approach*
+### Key Insights
+
+1. **If array already contains 1(s):**
+   - We can use `gcd(1, x) = 1` to convert any element to 1
+   - Total operations = number of non-1 elements = `n - count_of_ones`
+
+2. **If GCD of entire array > 1:**
+   - Impossible to create a 1 (no common divisor can be 1)
+   - Return `-1`
+
+3. **Otherwise, we need to CREATE a 1 first, then SPREAD it:**
+   - Find the shortest contiguous subarray with GCD = 1
+   - Convert that subarray into a single 1 (takes `k-1` operations for length `k`)
+   - Then spread the 1 to all positions (takes `n-1` operations)
+   - **Total operations = `(k - 1) + (n - 1) = k + n - 2`**
+
+### Algorithm Steps
+
+```
+1. Count existing 1s in the array
+   - If all are 1s → return 0
+   - If at least one 1 exists → return (n - count_of_ones)
+
+2. Find shortest subarray with GCD = 1:
+   - Use nested loops to check all subarrays
+   - For each starting position i:
+     - Calculate running GCD from i to j
+     - If GCD becomes 1, record the length and break
+   - Early termination: GCD can only decrease or stay same
+
+3. Calculate total operations:
+   - If no such subarray found → return -1
+   - Otherwise → return (shortest_length + n - 2)
+```
+
+### Why Shortest Subarray?
+
+A subarray of length `k` with GCD = 1 requires `(k-1)` operations to "collapse" into a single 1:
+- Each operation replaces an element with GCD of adjacent pair
+- After `k-1` operations, we have at least one 1 in the array
+- Shorter subarrays = fewer operations to create the first 1
 
 ## Solution
 
-```python
-# Python3 solution to be implemented
-
-```
+Implementation: [solution.py](./solution.py)
 
 ## Complexity Analysis
 
-- **Time Complexity:** 
-- **Space Complexity:** 
-
-## Notes
-
-*Add your insights and learnings here*
+- **Time Complexity:** O(n² × log(min_value))
+  - O(n²) for checking all subarrays
+  - O(log(min_value)) for each GCD calculation
+  - Early termination makes it faster in practice
+  
+- **Space Complexity:** O(1)
+  - Only using constant extra space for variables
