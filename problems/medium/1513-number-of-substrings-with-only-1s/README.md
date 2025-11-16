@@ -41,7 +41,59 @@ Explanation: Each substring contains only 1's characters.
 
 ## Approach & Algorithm
 
-*To be filled with your understanding and approach*
+### Key Insight
+
+For a string of consecutive 1's with length `k`, the number of substrings containing only 1's follows a mathematical pattern:
+
+**Formula:** `k × (k + 1) / 2`
+
+This is because:
+- Starting at position 0: k substrings
+- Starting at position 1: k-1 substrings
+- Starting at position 2: k-2 substrings
+- ...
+- Starting at position k-1: 1 substring
+
+**Total:** 1 + 2 + 3 + ... + k = k × (k + 1) / 2
+
+### Algorithm
+
+1. **Iterate through the string** character by character
+2. **Count consecutive 1's** in a variable `count_ones`
+3. **When encountering a '0':**
+   - Apply the formula to the current segment: `count_ones × (count_ones + 1) / 2`
+   - Add the result to the total
+   - Reset `count_ones` to 0
+4. **After the loop ends:**
+   - If there are remaining 1's (string ends with 1's), apply the formula one more time
+5. **Return result modulo 10^9 + 7** as required
+
+### Example Walkthrough
+
+```
+s = "0110111"
+
+i=0: '0' → count_ones=0, result=0
+i=1: '1' → count_ones=1
+i=2: '1' → count_ones=2
+i=3: '0' → Add 2×3/2=3, reset count_ones=0, result=3
+i=4: '1' → count_ones=1
+i=5: '1' → count_ones=2
+i=6: '1' → count_ones=3
+End: Add 3×4/2=6, result=3+6=9 ✅
+
+Segments found:
+- "11" at positions [1,2]: 3 substrings
+- "111" at positions [4,5,6]: 6 substrings
+Total: 9
+```
+
+### Why This Works
+
+Each segment of consecutive 1's can be counted independently. The formula efficiently calculates all possible substrings within that segment without needing nested loops.
+
+**Time Complexity:** O(n) - Single pass through the string
+**Space Complexity:** O(1) - Only using constant extra space
 
 ## Solution
 
@@ -49,5 +101,10 @@ Implementation: [solution.py](./solution.py)
 
 ## Complexity Analysis
 
-- **Time Complexity:** 
-- **Space Complexity:** 
+- **Time Complexity:** O(n)
+  - Single pass through the string
+  - Constant time operations per character
+  
+- **Space Complexity:** O(1)
+  - Only using a few variables (result, count_ones)
+  - No additional data structures needed 
